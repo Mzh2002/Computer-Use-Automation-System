@@ -6,10 +6,20 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class StrictModel(BaseModel):
+    """Base for every contract: reject unknown fields and implicit type conversions."""
+
     model_config = ConfigDict(extra="forbid", strict=True)
 
 
 class Target(StrictModel):
+    """Describe how the browser finds an element during discovery or replay.
+
+    ``kind`` selects a role, label, text, or CSS locator; ``value`` supplies its
+    name or selector. Role locators also require ``role`` (for example, button).
+    ``frame`` optionally scopes the lookup to an iframe selected by CSS.
+    These stable locators are saved instead of temporary observation references.
+    """
+
     kind: Literal["role", "label", "text", "css"]
     value: str = Field(min_length=1, max_length=500)
     role: str | None = None
@@ -23,6 +33,12 @@ class Target(StrictModel):
 
 
 class Value(StrictModel):
+    """Supply text for a fill action or comparison from exactly one source.
+
+    ``parameter`` names an invocation input, keeping a capability reusable across
+    members. ``literal`` stores fixed text directly in the capability.
+    """
+
     parameter: str | None = None
     literal: str | None = None
 
@@ -33,10 +49,17 @@ class Value(StrictModel):
         return self
 
     def resolve(self, inputs: dict[str, str]) -> str:
+        """Read the named runtime input, or return the configured literal text."""
         return inputs[self.parameter] if self.parameter is not None else self.literal
 
 
 class Condition(StrictModel):
+    """Define a browser checkpoint used after a step or to verify final success.
+
+    ``visible`` checks that the target is shown. ``text_equals`` compares its text
+    with the required ``value``, which may reference an invocation input.
+    """
+
     target: Target
     test: Literal["visible", "text_equals"] = "visible"
     value: Value | None = None
@@ -49,6 +72,14 @@ class Condition(StrictModel):
 
 
 class Step(StrictModel):
+    """Represent one ordered, declarative browser action in a capability.
+
+    Click selects a control; fill writes ``value``; assert compares target text
+    with ``value``; extract reads text into the named ``output``. An optional
+    ``postcondition`` checks the resulting page state. ``timeout_ms`` bounds
+    browser waits, and ``id`` identifies the step in results and evidence.
+    """
+
     id: str = Field(pattern=r"^[a-zA-Z0-9_-]{1,64}$")
     action: Literal["click", "fill", "extract", "assert"]
     target: Target
@@ -73,12 +104,26 @@ class Step(StrictModel):
 
 
 class FieldSpec(StrictModel):
+    """Describe validation requirements for one named input or output field.
+
+    Values are represented as strings. The runtime checks decimal and currency
+    formats and any supplied regular-expression ``pattern``. ``sensitive`` is
+    classification metadata; it does not itself implement redaction.
+    """
+
     type: Literal["string", "decimal", "currency"] = "string"
     pattern: str | None = None
     sensitive: bool = True
 
 
 class OutcomeRule(StrictModel):
+    """Map a visible application state to a trusted runtime response.
+
+    When ``target`` is visible, ``code`` identifies the outcome. ``category``
+    selects a business result, a failure, human handoff, or bounded retry.
+    Retry rules must identify an explicit ``recovery`` control to click.
+    """
+
     code: str = Field(pattern=r"^[A-Z_]{1,64}$")
     target: Target
     category: Literal["business", "failure", "human", "retry"]
@@ -92,6 +137,17 @@ class OutcomeRule(StrictModel):
 
 
 class Capability(StrictModel):
+    """Define the complete JSON contract for a reusable browser workflow.
+
+    Metadata identifies the capability, artifact schema, and target application;
+    ``entry_path`` gives its starting route and ``provenance`` records its origin.
+    ``inputs`` and ``outputs`` define the data contract, ``steps`` the execution
+    sequence, ``success`` the final checkpoints, and ``outcomes`` known runtime
+    states. Validation checks unique step IDs, declared parameter references,
+    and exactly one extraction for each declared output.
+    """
+
+    # Artifact format version and workflow version evolve independently.
     schema_version: Literal["1.0"] = "1.0"
     name: str = Field(pattern=r"^[a-z][a-z0-9_-]{1,63}$")
     version: str = Field(default="1.0.0", pattern=r"^[0-9]+\.[0-9]+\.[0-9]+$")
@@ -123,6 +179,15 @@ class Capability(StrictModel):
 
 
 class RunResult(StrictModel):
+    """Report the outcome of one discovery or replay invocation.
+
+    ``status`` gives the broad outcome and ``code`` its machine-readable reason.
+    ``outputs`` holds collected string values; ``step_id`` identifies the current
+    or last step. ``expected`` and ``observed`` provide diagnostic context.
+    ``llm_calls`` counts model requests, while ``run_id`` and ``evidence_dir``
+    connect the result to its logs. Evidence redaction is handled separately.
+    """
+
     run_id: str
     status: Literal["success", "business_outcome", "failure", "awaiting_human"]
     code: str

@@ -251,11 +251,7 @@ See [the test environment guide](test_environment/README.md) for the sandbox's c
 - `REPORT.md`: architecture, trade-offs and deliberate cuts.
 
 Evidence includes JSONL step/outcome/ownership metadata and text-free DOM structure on failures
-and handoffs. Raw DOM, screenshots, browser traces, input values, model transcripts and secrets are
-not persisted. Structural snapshots intentionally lose visual detail. Before submission, curate
-synthetic live-discovery and replay evidence into a new tracked directory under `evidence/`.
-
-The assignment's publication/email steps remain manual; this project does not publish or send mail.
+and handoffs. Raw DOM, screenshots, browser traces, input values, model transcripts and secrets are not persisted. Structural snapshots intentionally lose visual detail.
 
 ## References
 
