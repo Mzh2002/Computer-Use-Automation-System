@@ -7,7 +7,9 @@ success conditions. Replay imports neither the planner nor its provider client. 
 server wrapper supports tests and `cua demo`; no queue, cluster or production service is required.
 
 Source is grouped by responsibility: `cua.core` holds shared schemas/evidence, `cua.discovery`
-holds the discovery loop/provider, `cua.execution` holds replay/policy/handoff, and `cua.surfaces`
+holds the discovery loop/provider. Reference `discovery-diagram.png` for detailed discovery workflow.
+
+`cua.execution` holds replay/policy/handoff, and `cua.surfaces`
 holds browser control. The separately packaged `test_environment` owns MockBank, its server,
 task contract, demo commands, policy and synthetic fixtures. Tests remain in `tests/`.
 
