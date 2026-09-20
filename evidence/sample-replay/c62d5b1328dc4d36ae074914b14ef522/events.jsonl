@@ -1,0 +1,12 @@
+{"mode": "replay", "event": "run_started", "time": "2026-09-15T01:56:33.270512+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"capability": "read-savings", "capability_version": "1.0.0", "event": "capability_bound", "time": "2026-09-15T01:56:33.271297+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"step_id": "enter-member", "action": "fill", "reason": "bind_input_parameter", "event": "step_started", "time": "2026-09-15T01:56:34.498468+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"step_id": "enter-member", "action": "fill", "event": "step_completed", "time": "2026-09-15T01:56:34.550955+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"step_id": "search", "action": "click", "reason": "advance_workflow", "event": "step_started", "time": "2026-09-15T01:56:34.578547+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"step_id": "search", "action": "click", "event": "step_completed", "time": "2026-09-15T01:56:34.682467+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"step_id": "open-member", "action": "click", "reason": "advance_workflow", "event": "step_started", "time": "2026-09-15T01:56:34.726929+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"step_id": "open-member", "action": "click", "event": "step_completed", "time": "2026-09-15T01:56:34.801542+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"step_id": "open-accounts", "action": "click", "reason": "advance_workflow", "event": "step_started", "time": "2026-09-15T01:56:34.841115+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"step_id": "open-accounts", "action": "click", "event": "step_completed", "time": "2026-09-15T01:56:34.915918+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"code": "PERMISSION_DENIED", "step_id": "verify-member", "event": "outcome_detected", "time": "2026-09-15T01:56:34.976609+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}
+{"status": "failure", "code": "PERMISSION_DENIED", "event": "run_finished", "time": "2026-09-15T01:56:35.261627+00:00", "run_id": "c62d5b1328dc4d36ae074914b14ef522"}

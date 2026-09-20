@@ -1,0 +1,15 @@
+{
+  "run_id": "fc89776e9bf84a248b8f0d63ec4e86a0",
+  "status": "success",
+  "code": "OK",
+  "outputs": {
+    "member_id": "[REDACTED]",
+    "balance": "[REDACTED]",
+    "currency": "[REDACTED]"
+  },
+  "step_id": "read-currency",
+  "expected": null,
+  "observed": null,
+  "llm_calls": 0,
+  "evidence_dir": "evidence\\sample-replay\\fc89776e9bf84a248b8f0d63ec4e86a0"
+}

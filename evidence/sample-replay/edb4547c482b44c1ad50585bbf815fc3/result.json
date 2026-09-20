@@ -1,0 +1,11 @@
+{
+  "run_id": "edb4547c482b44c1ad50585bbf815fc3",
+  "status": "business_outcome",
+  "code": "MEMBER_NOT_FOUND",
+  "outputs": {},
+  "step_id": "open-member",
+  "expected": "declared action and checkpoint",
+  "observed": "MEMBER_NOT_FOUND",
+  "llm_calls": 0,
+  "evidence_dir": "evidence\\sample-replay\\edb4547c482b44c1ad50585bbf815fc3"
+}

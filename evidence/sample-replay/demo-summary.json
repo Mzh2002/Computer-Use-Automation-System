@@ -1,0 +1,93 @@
+[
+  {
+    "scenario": "normal",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "0339b451134343b0a91918767682fe6d"
+  },
+  {
+    "scenario": "normal",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "310ee0cff65f40ca9387f1aadb27e3e7"
+  },
+  {
+    "scenario": "normal",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "bf17b7d99ad54d9299fb8e6c3ac35ab5"
+  },
+  {
+    "scenario": "normal",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "408b4718f18043fd995539f5c5e94220"
+  },
+  {
+    "scenario": "normal",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "dd0d2724db8b4ece9daccb4883f85c55"
+  },
+  {
+    "scenario": "normal",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "842bd4907b7942abb494c64336cb19f6"
+  },
+  {
+    "scenario": "normal",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "fc89776e9bf84a248b8f0d63ec4e86a0"
+  },
+  {
+    "scenario": "normal",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "36844fcfa75c4371a69ae35ac956ec6b"
+  },
+  {
+    "scenario": "normal",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "7d9ecb3fc09d471c85583c2057d20cc0"
+  },
+  {
+    "scenario": "normal",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "1d08e680884d48c2a407e10ad623dab2"
+  },
+  {
+    "scenario": "normal",
+    "expected_code": "MEMBER_NOT_FOUND",
+    "actual_code": "MEMBER_NOT_FOUND",
+    "passed": true,
+    "run_id": "edb4547c482b44c1ad50585bbf815fc3"
+  },
+  {
+    "scenario": "transient",
+    "expected_code": "OK",
+    "actual_code": "OK",
+    "passed": true,
+    "run_id": "e225bdc6b0bd43919947f4a0f12b56a7"
+  },
+  {
+    "scenario": "permission-denied",
+    "expected_code": "PERMISSION_DENIED",
+    "actual_code": "PERMISSION_DENIED",
+    "passed": true,
+    "run_id": "c62d5b1328dc4d36ae074914b14ef522"
+  }
+]

@@ -1,0 +1,8 @@
+{"mode": "replay", "event": "run_started", "time": "2026-09-15T01:56:29.449595+00:00", "run_id": "edb4547c482b44c1ad50585bbf815fc3"}
+{"capability": "read-savings", "capability_version": "1.0.0", "event": "capability_bound", "time": "2026-09-15T01:56:29.450096+00:00", "run_id": "edb4547c482b44c1ad50585bbf815fc3"}
+{"step_id": "enter-member", "action": "fill", "reason": "bind_input_parameter", "event": "step_started", "time": "2026-09-15T01:56:30.595955+00:00", "run_id": "edb4547c482b44c1ad50585bbf815fc3"}
+{"step_id": "enter-member", "action": "fill", "event": "step_completed", "time": "2026-09-15T01:56:30.663418+00:00", "run_id": "edb4547c482b44c1ad50585bbf815fc3"}
+{"step_id": "search", "action": "click", "reason": "advance_workflow", "event": "step_started", "time": "2026-09-15T01:56:30.731816+00:00", "run_id": "edb4547c482b44c1ad50585bbf815fc3"}
+{"step_id": "search", "action": "click", "event": "step_completed", "time": "2026-09-15T01:56:30.831902+00:00", "run_id": "edb4547c482b44c1ad50585bbf815fc3"}
+{"code": "MEMBER_NOT_FOUND", "step_id": "open-member", "event": "outcome_detected", "time": "2026-09-15T01:56:30.857802+00:00", "run_id": "edb4547c482b44c1ad50585bbf815fc3"}
+{"status": "business_outcome", "code": "MEMBER_NOT_FOUND", "event": "run_finished", "time": "2026-09-15T01:56:31.042210+00:00", "run_id": "edb4547c482b44c1ad50585bbf815fc3"}

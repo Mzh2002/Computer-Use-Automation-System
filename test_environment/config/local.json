@@ -1,0 +1,11 @@
+{
+  "origins": ["http://127.0.0.1:8000"],
+  "routes": ["/", "/search", "/member", "/workspace", "/accounts", "/restore-session"],
+  "actions": ["click", "fill", "extract", "assert"],
+  "click_names": ["Search", "Open member", "View accounts", "Retry load"],
+  "fill_names": ["Member ID"],
+  "human_control_names": ["Acknowledge notice", "Restore demo session"],
+  "max_steps": 30,
+  "max_seconds": 120,
+  "max_retries": 2
+}

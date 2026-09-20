@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0",
+  "name": "read-savings",
+  "version": "1.0.0",
+  "description": "Read a member's savings balance through the UI.",
+  "vendor": "mockbank",
+  "app_version": "1",
+  "entry_path": "/",
+  "provenance": "hand_authored",
+  "inputs": {
+    "member_id": {
+      "type": "string",
+      "pattern": "[0-9]{5}",
+      "sensitive": true
+    }
+  },
+  "outputs": {
+    "member_id": {
+      "type": "string",
+      "pattern": "[0-9]{5}",
+      "sensitive": true
+    },
+    "balance": {
+      "type": "decimal",
+      "pattern": null,
+      "sensitive": true
+    },
+    "currency": {
+      "type": "currency",
+      "pattern": null,
+      "sensitive": true
+    }
+  },
+  "steps": [
+    {
+      "id": "enter-member",
+      "action": "fill",
+      "target": {
+        "kind": "label",
+        "value": "Member ID",
+        "role": null,
+        "frame": null
+      },
+      "value": {
+        "parameter": "member_id",
+        "literal": null
+      },
+      "output": null,
+      "postcondition": null,
+      "timeout_ms": 4000
+    },
+    {
+      "id": "search",
+      "action": "click",
+      "target": {
+        "kind": "role",
+        "value": "Search",
+        "role": "button",
+        "frame": null
+      },
+      "value": null,
+      "output": null,
+      "postcondition": null,
+      "timeout_ms": 4000
+    },
+    {
+      "id": "open-member",
+      "action": "click",
+      "target": {
+        "kind": "role",
+        "value": "Open member",
+        "role": "link",
+        "frame": null
+      },
+      "value": null,
+      "output": null,
+      "postcondition": null,
+      "timeout_ms": 4000
+    },
+    {
+      "id": "open-accounts",
+      "action": "click",
+      "target": {
+        "kind": "role",
+        "value": "View accounts",
+        "role": "link",
+        "frame": null
+      },
+      "value": null,
+      "output": null,
+      "postcondition": null,
+      "timeout_ms": 4000
+    },
+    {
+      "id": "verify-member",
+      "action": "assert",
+      "target": {
+        "kind": "css",
+        "value": "tr:has(> th:text-is(\"Member ID\")) > td",
+        "role": null,
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "value": {
+        "parameter": "member_id",
+        "literal": null
+      },
+      "output": null,
+      "postcondition": null,
+      "timeout_ms": 4000
+    },
+    {
+      "id": "read-member",
+      "action": "extract",
+      "target": {
+        "kind": "css",
+        "value": "tr:has(> th:text-is(\"Member ID\")) > td",
+        "role": null,
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "value": null,
+      "output": "member_id",
+      "postcondition": null,
+      "timeout_ms": 4000
+    },
+    {
+      "id": "read-balance",
+      "action": "extract",
+      "target": {
+        "kind": "css",
+        "value": "tr:has(> th:text-is(\"Savings balance\")) > td",
+        "role": null,
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "value": null,
+      "output": "balance",
+      "postcondition": null,
+      "timeout_ms": 4000
+    },
+    {
+      "id": "read-currency",
+      "action": "extract",
+      "target": {
+        "kind": "css",
+        "value": "tr:has(> th:text-is(\"Currency\")) > td",
+        "role": null,
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "value": null,
+      "output": "currency",
+      "postcondition": null,
+      "timeout_ms": 4000
+    }
+  ],
+  "success": [
+    {
+      "target": {
+        "kind": "role",
+        "value": "Account summary",
+        "role": "heading",
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "test": "visible",
+      "value": null
+    },
+    {
+      "target": {
+        "kind": "css",
+        "value": "tr:has(> th:text-is(\"Member ID\")) > td",
+        "role": null,
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "test": "text_equals",
+      "value": {
+        "parameter": "member_id",
+        "literal": null
+      }
+    }
+  ],
+  "outcomes": [
+    {
+      "code": "MEMBER_NOT_FOUND",
+      "target": {
+        "kind": "role",
+        "value": "Member not found",
+        "role": "heading",
+        "frame": null
+      },
+      "category": "business",
+      "recovery": null
+    },
+    {
+      "code": "INVALID_MEMBER_ID",
+      "target": {
+        "kind": "role",
+        "value": "Invalid member ID",
+        "role": "heading",
+        "frame": null
+      },
+      "category": "business",
+      "recovery": null
+    },
+    {
+      "code": "PERMISSION_DENIED",
+      "target": {
+        "kind": "role",
+        "value": "Permission denied",
+        "role": "heading",
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "category": "failure",
+      "recovery": null
+    },
+    {
+      "code": "APPLICATION_ERROR",
+      "target": {
+        "kind": "role",
+        "value": "Application error",
+        "role": "heading",
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "category": "failure",
+      "recovery": null
+    },
+    {
+      "code": "SESSION_EXPIRED",
+      "target": {
+        "kind": "role",
+        "value": "Session expired",
+        "role": "heading",
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "category": "human",
+      "recovery": null
+    },
+    {
+      "code": "OPERATOR_REVIEW_REQUIRED",
+      "target": {
+        "kind": "role",
+        "value": "Operator review required",
+        "role": "heading",
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "category": "human",
+      "recovery": null
+    },
+    {
+      "code": "TRANSIENT_LOAD",
+      "target": {
+        "kind": "role",
+        "value": "Temporary service interruption",
+        "role": "heading",
+        "frame": "iframe[title=\"Account panel\"]"
+      },
+      "category": "retry",
+      "recovery": {
+        "kind": "role",
+        "value": "Retry load",
+        "role": "link",
+        "frame": "iframe[title=\"Account panel\"]"
+      }
+    }
+  ]
+}
